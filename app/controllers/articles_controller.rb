@@ -19,10 +19,11 @@ class ArticlesController < ApplicationController
   end
 
   def create
-    @article = Article.new(article_params)
+    @user = current_user
+    @article = @user.articles.new(article_params)
 
     if @article.save
-      redirect_to @article
+      redirect_to root_path, :notice => "Post successfully created"
     else
       render 'new'
     end
@@ -47,6 +48,6 @@ class ArticlesController < ApplicationController
 
   private
     def article_params
-      params.require(:article).permit(:title, :text)
+      params.require(:article).permit(:title, :text, :user_id)
     end
 end
