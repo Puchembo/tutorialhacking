@@ -1,8 +1,6 @@
 Rails.application.routes.draw do
 
-  mount Payola::Engine => '/payola', as: :payola
   devise_for :users
-  resources :subscriptions
   resources :articles do
     resources :comments
   end
