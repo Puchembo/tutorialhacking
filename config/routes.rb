@@ -1,10 +1,11 @@
 Rails.application.routes.draw do
 
+  mount Payola::Engine => '/payola', as: :payola
   devise_for :users
   resources :articles do
     resources :comments
   end
-
+  resources :subscriptions
   root 'articles#index'
 
   # The priority is based upon order of creation: first created -> highest priority.
